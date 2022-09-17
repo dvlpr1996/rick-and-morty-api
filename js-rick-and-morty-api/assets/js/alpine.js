@@ -72,3 +72,40 @@ function filterCharacters() {
 		}
 	}
 }
+
+function getLocation() {
+	return {
+		page: '1',
+		locations: null,
+		fetchStatus: '',
+		init() {
+			this.fetchData();
+			this.$watch('page', () => {
+				this.fetchData();
+			});
+		},
+		fetchData() {
+			this.fetchStatus = 'loading',
+				fetch(`https://rickandmortyapi.com/api/location/?page=${this.page}`)
+					.then(res => {
+						if (!res.ok) {
+							this.fetchStatus = 'error';
+						}
+						return res.json();
+					})
+					.then(data => {
+						this.fetchStatus = "success";
+						this.locations = data.results;
+					})
+					.catch(error => {
+						this.fetchStatus = 'error';
+					})
+		},
+		previousPage() {
+			if (this.page > 0) this.page--;
+		},
+		nextPage() {
+			if (this.page < 42) this.page++;
+		},
+	}
+}

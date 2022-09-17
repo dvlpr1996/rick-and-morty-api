@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Rick and Morty | Location</title>
+	<meta charset="UTF-8">
+	<meta name="language" content="en">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="owner" content="Nima jahan bakhshian | dvlpr1996">
+	<meta name="author" content="Nima jahan bakhshian | dvlpr1996">
+	<meta name="designer" content="Nima jahan bakhshian | dvlpr1996">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="Rick and Morty wiki | dvlpr1996">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Rick and Morty wiki, tailwindCss, dvlpr1996, php8">
+	<link rel="icon" sizes="64X64" href="favicon.ico">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="assets/css/main.min.css">
+	<script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+
+	<!-- [if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<![endif] -->
+</head>
+
+<body>
+	<div class="mx-auto max-w-7xl">
+		<nav class="flex items-center py-4 justify-between">
+			<div class="flex items-center gap-2 sm:gap-5">
+				<div class="flex items-center gap-2">
+					<a href="index.html">
+						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo">
+					</a>
+					<a href="index.html" class="text-base hidden sm:block">Rick and Morty</a>
+				</div>
+
+				<div class="space-x-1 sm:space-x-3">
+					<a href="index.html">home</a>
+					<a href="episode.html">Episodes</a>
+					<a href="location.html">Locations</a>
+				</div>
+			</div>
+
+			<a href="portal.html" title="travel between different universes">
+				<img src="assets/img/portal.png" class="portal-img" alt="portal">
+			</a>
+		</nav>
+
+		<main x-data="getLocation()" x-init="$nextTick(() => { init() })" class="space-y-8 my-8">
+			<div class="flex items-center gap-2 justify-center sm:justify-start">
+				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16">
+				<h2 id="top">Locations <sup>wiki</sup></h2>
+			</div>
+
+			<template x-if="fetchStatus === 'error'">
+				<p class="text-center py-3 px-2 bg-red-600 rounded-lg text
+					 font-bold">
+					There was something wrong with the API call, please try again.
+				</p>
+			</template>
+
+			<div class="card-wrapper">
+				<template x-for="location in locations">
+					<div class="card gap-5">
+						<h3 class="card-title" x-text="location.name"></h3>
+						<ul class="space-y-3 capitalize">
+							<li>
+								<span class="font-bold">location type :</span>
+								<span x-text="location.type"></span>
+							</li>
+							<li>
+								<span class="font-bold">dimension :</span>
+								<span x-text="location.dimension"></span>
+							</li>
+							<li>
+								<span class="font-bold">population :</span>
+								<span x-text="location.residents.length"></span>
+							</li>
+						</ul>
+					</div>
+				</template>
+
+			</div>
+
+			<div class="flex justify-center">
+				<div class="flex items-center gap-2">
+					<a href="#top" class="btn px-4 py-2 cursor-pointer" @click="previousPage()">prev</a>
+					<a href="#top" class="btn px-4 py-2 cursor-pointer" @click="nextPage()">next</a>
+				</div>
+			</div>
+		</main>
+
+		<footer class="text-center py-6 space-y-6 bg-slate-800 rounded-t-lg px-2">
+			<a href="index.html">
+				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16 block mx-auto">
+			</a>
+
+			<p>© <span id="year"> </span> Rick and Morty <sup>wiki</sup> . All rights reserved</p>
+
+			<div class="space-x-4">
+				<a href="https://codepen.io/dvlpr1996" title="codepen">
+					<i class="fab fa-2x fa-codepen"></i>
+				</a>
+				<a href="https://instagram.com/nima_jahanbakhshian" title="instagram">
+					<i class="fab fa-2x fa-instagram"></i>
+				</a>
+				<a href="https://www.linkedin.com/in/nima-jahan-bakhshian" title="linkedin">
+					<i class="fab fa-2x fa-linkedin"></i>
+				</a>
+				<a href="https://t.me/nima96_j" title="telegram">
+					<i class="fab fa-2x fa-telegram"></i>
+				</a>
+			</div>
+
+		</footer>
+	</div>
+
+	<script src="assets/js/alpine.js"></script>
+	<script src="assets/js/app.js" defer></script>
+	<noscript>your browser does not support the javascript!!!</noscript>
+
+</body>
+
+</html>
