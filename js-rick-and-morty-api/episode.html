@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Rick and Morty | Location</title>
+	<title>Rick and Morty | Episode</title>
 	<meta charset="UTF-8">
 	<meta name="language" content="en">
 	<meta name="robots" content="index, follow">
@@ -47,10 +47,10 @@
 			</a>
 		</nav>
 
-		<main x-data="getLocation()" x-init="$nextTick(() => { init() })" class="space-y-16 my-8">
+		<main x-data="getEpisode()" x-init="$nextTick(() => { init() })" class="space-y-16 my-8">
 			<div class="flex items-center gap-2 justify-center sm:justify-start">
-				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16">
-				<h1 id="top">Locations <sup>wiki</sup></h1>
+				<img src="assets/img/morty.png" alt="rick-logo" class="w-16 h-16">
+				<h1>episode <sup>wiki</sup></h1>
 			</div>
 
 			<template x-if="fetchStatus === 'error'">
@@ -61,21 +61,21 @@
 			</template>
 
 			<div class="card-wrapper">
-				<template x-for="location in locations">
+				<template x-for="episode in episodes">
 					<div class="card gap-5">
-						<h3 class="card-title" x-text="location.name"></h3>
+						<h3 class="card-title" x-text="episode.name"></h3>
 						<ul class="space-y-3 capitalize">
 							<li>
-								<span class="font-bold">location type :</span>
-								<span x-text="location.type"></span>
+								<span class="font-bold">episode number :</span>
+								<span x-text="episode.episode"></span>
 							</li>
 							<li>
-								<span class="font-bold">dimension :</span>
-								<span x-text="location.dimension"></span>
+								<span class="font-bold">episode date :</span>
+								<span x-text="episode.air_date"></span>
 							</li>
 							<li>
-								<span class="font-bold">population :</span>
-								<span x-text="location.residents.length"></span>
+								<span class="font-bold">count of characters :</span>
+								<span x-text="episode.characters.length"></span>
 							</li>
 						</ul>
 					</div>

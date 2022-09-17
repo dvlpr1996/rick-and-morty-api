@@ -109,3 +109,40 @@ function getLocation() {
 		},
 	}
 }
+
+function getEpisode() {
+	return {
+		page: '1',
+		episodes: null,
+		fetchStatus: '',
+		init() {
+			this.fetchData();
+			this.$watch('page', () => {
+				this.fetchData();
+			});
+		},
+		fetchData() {
+			this.fetchStatus = 'loading',
+				fetch(`https://rickandmortyapi.com/api/episode/?page=${this.page}`)
+					.then(res => {
+						if (!res.ok) {
+							this.fetchStatus = 'error';
+						}
+						return res.json();
+					})
+					.then(data => {
+						this.fetchStatus = "success";
+						this.episodes = data.results;
+					})
+					.catch(error => {
+						this.fetchStatus = 'error';
+					})
+		},
+		previousPage() {
+			if (this.page > 0) this.page--;
+		},
+		nextPage() {
+			if (this.page < 42) this.page++;
+		},
+	}
+}
