@@ -146,3 +146,35 @@ function getEpisode() {
 		},
 	}
 }
+
+function getCharDetails() {
+	return {
+		data: null,
+		fetchStatus: null,
+		init() {
+			this.charDetails();
+		},
+		charDetails() {
+			this.fetchStatus = 'loading',
+				fetch(`https://rickandmortyapi.com/api/character/${this.getDataFromUrl()}`)
+					.then(res => {
+						if (!res.ok) {
+							this.fetchStatus = 'error';
+						}
+						return res.json();
+					})
+					.then(data => {
+						this.fetchStatus = "success";
+						this.data = data;
+					})
+					.catch(error => {
+						this.fetchStatus = 'error';
+					});
+		},
+		getDataFromUrl() {
+			let params = new URLSearchParams(window.location.search),
+				char = JSON.parse(params.get("char"));
+			return char;
+		}
+	}
+}

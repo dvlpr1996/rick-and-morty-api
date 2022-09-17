@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Rick and Morty wiki</title>
+	<title>Rick and Morty | character</title>
 	<meta charset="UTF-8">
 	<meta name="language" content="en">
 	<meta name="robots" content="index, follow">
@@ -25,16 +25,14 @@
 </head>
 
 <body>
-
-	<div class="mx-auto max-w-7xl">
-		<nav class="flex items-center justify-between py-4">
-
+	<div class="text mx-auto max-w-7xl">
+		<nav class="flex items-center py-4 justify-between">
 			<div class="flex items-center gap-2 sm:gap-5">
 				<div class="flex items-center gap-2">
 					<a href="index.html">
 						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo">
 					</a>
-					<a href="index.html" class="hidden text-base sm:block">Rick and Morty</a>
+					<a href="index.html" class="text-base hidden sm:block">Rick and Morty</a>
 				</div>
 
 				<div class="space-x-1 sm:space-x-3">
@@ -47,81 +45,56 @@
 			<a href="portal.html" title="travel between different universes">
 				<img src="assets/img/portal.png" class="portal-img" alt="portal">
 			</a>
-
 		</nav>
 
-		<header x-data="filterCharacters()" x-init="init">
-			<div class="form-warper relative">
-				<input type="text" x-model.debounce.200="filter" class="form-control"
-					placeholder="find your favorite character by name">
-
-				<template x-if="filter && fetchStatus === 'success'">
-					<div class="absolute rounded-lg border border-slate-700 bg-slate-800 z-10 p-4
-					w-full min-h-max overflow-y-auto" :class="{'hidden' : !characters}">
-						<template x-for="char in characters">
-							<a :href="url" x-text="char.name +' - '+ char.species" class="block hover:bg-slate-600 p-2 hover:text"
-								@click="link(char.id)"></a>
-						</template>
-					</div>
-				</template>
-			</div>
-		</header>
-
-		<main x-data="getCharacters()" x-init="$nextTick(() => { init() })" class="my-16 space-y-16">
-			<div class="flex items-center justify-center gap-2 sm:justify-start">
-				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16">
-				<h1 id="top">
-					Rick and Morty <sup class="hidden text-2xl sm:inline-flex">wiki</sup>
-				</h1>
-			</div>
+		<main class="my-16" x-data="getCharDetails()" x-init="$nextTick(() => { init() })">
 
 			<template x-if="fetchStatus === 'error'">
-				<p class="px-2 py-3 font-bold text-center bg-red-600 rounded-lg text">
+				<p class="my-5 text-center py-3 px-2 bg-red-600 rounded-lg text
+					 font-bold">
 					There was something wrong with the API call, please try again.
 				</p>
 			</template>
 
-			<div class="card-wrapper">
-				<template x-for="char in characters">
-					<div class="card">
-						<img x-bind:src="char.image" :alt="char.name" class="card-img">
-						<div class="card-body">
-							<h2 class="card-title truncate" x-text="char.name"></h2>
-
-							<div class="flex items-center justify-between">
-								<span id="gender-wrapper">
-									<i class="mr-1 fas" id="gender-icon"></i>
-									<span x-text="char.gender" id="gender"></span>
-								</span>
-
-								<span id="status-wrapper">
-									<i class="mr-1 far" id="status-icon"></i>
-									<span x-text="char.status" id="status"></span>
-								</span>
-							</div>
-
-							<a :href="url" class="btn" id="char-btn" @click="link(char.id)">
-								show more
-								<i class="align-middle fas fa-angle-double-right"></i>
-							</a>
-
-						</div>
+			<template x-if="fetchStatus === 'success'">
+				<div class="lg:w-4/5 mx-auto flex flex-col sm:flex-row gap-6">
+					<img :src="data.image" :alt="data.name" class="rounded-lg md:w-1/2 w-full object-fill object-center p-2
+						border border-slate-100">
+					<div class="md:w-1/2 w-full space-y-5">
+						<ul class="space-y-8">
+							<li class="capitalize text-lg">
+								<span class="font-bold">name</span> :
+								<span class="font-light" x-text="data.name"></span>
+							</li>
+							<li class="capitalize text-lg">
+								<span class="font-bold">status</span> :
+								<span class="font-light" x-text="data.status"></span>
+							</li>
+							<li class="capitalize text-lg">
+								<span class="font-bold">species</span> :
+								<span class="font-light" x-text="data.species"></span>
+							</li>
+							<li class="capitalize text-lg">
+								<span class="font-bold">gender</span> :
+								<span class="font-light" x-text="data.gender"></span>
+							</li>
+							<li class="capitalize text-lg">
+								<span class="font-bold">origin</span> :
+								<span class="font-light" x-text="data.origin.name"></span>
+							</li>
+							<li class="capitalize text-lg">
+								<span class="font-bold">location</span> :
+								<span class="font-light" x-text="data.location.name"></span>
+							</li>
+						</ul>
 					</div>
-				</template>
-			</div>
-
-			<div class="flex justify-center">
-				<div class="flex items-center gap-2">
-					<a href="#top" class="px-4 py-2 cursor-pointer btn" @click="previousPage()">prev</a>
-					<a href="#top" class="px-4 py-2 cursor-pointer btn" @click="nextPage()">next</a>
 				</div>
-			</div>
+			</template>
 		</main>
 
-		<footer class="px-2 py-6 space-y-6 text-center rounded-t-lg bg-slate-800">
-
+		<footer class="text-center py-6 space-y-6 bg-slate-800 rounded-t-lg px-2">
 			<a href="index.html">
-				<img src="assets/img/rick.png" alt="rick-logo" class="block w-16 h-16 mx-auto">
+				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16 block mx-auto">
 			</a>
 
 			<p>© <span id="year"> </span> Rick and Morty <sup>wiki</sup> . All rights reserved</p>
@@ -147,6 +120,7 @@
 	<script src="assets/js/alpine.js"></script>
 	<script src="assets/js/app.js" defer></script>
 	<noscript>your browser does not support the javascript!!!</noscript>
+
 </body>
 
 </html>
