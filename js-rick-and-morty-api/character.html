@@ -25,12 +25,17 @@
 </head>
 
 <body>
+	<div id="loader" class="loader-container">
+		<img src="assets/img/portal.png" alt="loader" class="portal-img w-44 h-44">
+		<p class="text-center text-black text-lg">loading ...</p>
+	</div>
+
 	<div class="text mx-auto max-w-7xl">
 		<nav class="flex items-center py-4 justify-between">
 			<div class="flex items-center gap-2 sm:gap-5">
 				<div class="flex items-center gap-2">
 					<a href="index.html">
-						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo">
+						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo" loading="laze">
 					</a>
 					<a href="index.html" class="text-base hidden sm:block">Rick and Morty</a>
 				</div>
@@ -43,11 +48,11 @@
 			</div>
 
 			<a href="portal.html" title="travel between different universes">
-				<img src="assets/img/portal.png" class="portal-img" alt="portal">
+				<img src="assets/img/portal.png" class="portal-img" alt="portal" loading="lazy">
 			</a>
 		</nav>
 
-		<main class="my-16" x-data="getCharDetails()" x-init="$nextTick(() => { init() })">
+		<main class="my-8 sm:mt-4" x-data="getCharDetails()" x-init="$nextTick(() => { init() })">
 
 			<template x-if="fetchStatus === 'error'">
 				<p class="my-5 text-center py-3 px-2 bg-red-600 rounded-lg text
@@ -56,10 +61,15 @@
 				</p>
 			</template>
 
-			<template x-if="fetchStatus === 'success'">
+			<template x-if="fetchStatus === 'loading'">
+				<p class="text-center text-green-600 text italic text-2xl">
+					loading ...
+				</p>
+			</template>
+
+			<template x-if="fetchStatus === 'success' && data">
 				<div class="lg:w-4/5 mx-auto flex flex-col sm:flex-row gap-6">
-					<img :src="data.image" :alt="data.name" class="rounded-lg md:w-1/2 w-full object-fill object-center p-2
-						border border-slate-100">
+					<img :src="data.image" :alt="data.name" class="rounded-lg md:w-1/2 w-full object-fill object-center p-2 border border-slate-100" loading="lazy">
 					<div class="md:w-1/2 w-full space-y-5">
 						<ul class="space-y-8">
 							<li class="capitalize text-lg">

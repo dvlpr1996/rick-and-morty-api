@@ -25,6 +25,10 @@
 </head>
 
 <body>
+	<div id="loader" class="loader-container">
+		<img src="assets/img/portal.png" alt="loader" class="portal-img w-44 h-44">
+		<p class="text-center text-black text-lg">loading ...</p>
+	</div>
 
 	<div class="mx-auto max-w-7xl">
 		<nav class="flex items-center justify-between py-4">
@@ -32,7 +36,7 @@
 			<div class="flex items-center gap-2 sm:gap-5">
 				<div class="flex items-center gap-2">
 					<a href="index.html">
-						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo">
+						<img src="assets/img/logo.png" alt="Rick and Morty" class="logo" loading="lazy">
 					</a>
 					<a href="index.html" class="hidden text-base sm:block">Rick and Morty</a>
 				</div>
@@ -45,7 +49,7 @@
 			</div>
 
 			<a href="portal.html" title="travel between different universes">
-				<img src="assets/img/portal.png" class="portal-img" alt="portal">
+				<img src="assets/img/portal.png" class="portal-img" alt="portal" loading="lazy">
 			</a>
 
 		</nav>
@@ -70,7 +74,7 @@
 		<main x-data="getCharacters()" x-init="$nextTick(() => { init() })" class="my-16 space-y-16">
 			<div class="flex items-center justify-center gap-2 sm:justify-start">
 				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16">
-				<h1 id="top">
+				<h1>
 					Rick and Morty <sup class="hidden text-2xl sm:inline-flex">wiki</sup>
 				</h1>
 			</div>
@@ -81,39 +85,51 @@
 				</p>
 			</template>
 
-			<div class="card-wrapper">
-				<template x-for="char in characters">
-					<div class="card">
-						<img x-bind:src="char.image" :alt="char.name" class="card-img">
-						<div class="card-body">
-							<h2 class="card-title truncate" x-text="char.name"></h2>
+			<template x-if="fetchStatus === 'loading'">
+				<p class="text-center text-green-600 text italic text-2xl">
+					loading ...
+				</p>
+			</template>
 
-							<div class="flex items-center justify-between">
-								<span id="gender-wrapper">
-									<i class="mr-1 fas" id="gender-icon"></i>
-									<span x-text="char.gender" id="gender"></span>
-								</span>
+			<template x-if="fetchStatus === 'success' && characters">
+				<div class="card-wrapper">
+					<template x-for="char in characters">
+						<div class="card">
+							<img x-bind:src="char.image" :alt="char.name" class="card-img" loading="lazy">
+							<div class="card-body">
+								<h2 class="card-title truncate" x-text="char.name"></h2>
 
-								<span id="status-wrapper">
-									<i class="mr-1 far" id="status-icon"></i>
-									<span x-text="char.status" id="status"></span>
-								</span>
+								<div class="flex items-center justify-between">
+									<span id="gender-wrapper">
+										<i class="mr-1 fas" id="gender-icon"></i>
+										<span x-text="char.gender" id="gender"></span>
+									</span>
+
+									<span id="status-wrapper">
+										<i class="mr-1 far" id="status-icon"></i>
+										<span x-text="char.status" id="status"></span>
+									</span>
+								</div>
+
+								<a :href="url" class="btn" id="char-btn" @click="link(char.id)">
+									show more
+									<i class="align-middle fas fa-angle-double-right"></i>
+								</a>
+
 							</div>
-
-							<a :href="url" class="btn" id="char-btn" @click="link(char.id)">
-								show more
-								<i class="align-middle fas fa-angle-double-right"></i>
-							</a>
-
 						</div>
-					</div>
-				</template>
-			</div>
+					</template>
+				</div>
+			</template>
 
 			<div class="flex justify-center">
 				<div class="flex items-center gap-2">
-					<a href="#top" class="px-4 py-2 cursor-pointer btn" @click="previousPage()">prev</a>
-					<a href="#top" class="px-4 py-2 cursor-pointer btn" @click="nextPage()">next</a>
+					<button type="button" class="px-4 py-2 cursor-pointer btn" @click="previousPage()">
+						prev
+					</button>
+					<button type="button" class="px-4 py-2 cursor-pointer btn" @click="nextPage()">
+						next
+					</button>
 				</div>
 			</div>
 		</main>
