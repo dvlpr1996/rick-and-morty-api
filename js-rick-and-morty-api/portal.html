@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Rick and Morty | Location</title>
+	<title>Rick and Morty | portal</title>
 	<meta charset="UTF-8">
 	<meta name="language" content="en">
 	<meta name="robots" content="index, follow">
@@ -47,48 +47,41 @@
 			</a>
 		</nav>
 
-		<main x-data="getLocation()" x-init="$nextTick(() => { init() })" class="space-y-16 my-8">
-			<div class="flex items-center gap-2 justify-center sm:justify-start">
-				<img src="assets/img/rick.png" alt="rick-logo" class="w-16 h-16">
-				<h1 id="top">Locations <sup>wiki</sup></h1>
-			</div>
+		<main x-data="travel()" class="space-y-5 mt-8 mb-16 flex flex-col items-center justify-center">
+			<div class="space-y-10">
+				<h1 class="text-center">travel between universes</h1>
 
-			<template x-if="fetchStatus === 'error'">
-				<p class="text-center py-3 px-2 bg-red-600 rounded-lg text
-					 font-bold">
-					There was something wrong with the API call, please try again.
-				</p>
-			</template>
+				<img src="assets/img/portal.png" alt="portal" class="block mx-auto" id="portal">
 
-			<div class="card-wrapper">
-				<template x-for="location in locations">
-					<div class="card gap-5">
-						<h3 class="card-title" x-text="location.name"></h3>
-						<ul class="space-y-3 capitalize">
-							<li>
-								<span class="font-bold">location type :</span>
-								<span x-text="location.type"></span>
-							</li>
-							<li  class="truncate">
-								<span class="font-bold">dimension :</span>
-								<span x-text="location.dimension"></span>
-							</li>
-							<li>
-								<span class="font-bold">population :</span>
-								<span x-text="location.residents.length"></span>
-							</li>
-						</ul>
-					</div>
+				<template x-if="fetchStatus === 'error'">
+					<p class="text-center py-3 px-2 bg-red-600 rounded-lg text font-bold">
+						There was something wrong with the API call, please try again.
+					</p>
+				</template>
+
+				<template x-if="fetchStatus === 'loading'">
+					<p class="text-center text-green-600 text italic text-2xl">
+						you are traveling to ...
+					</p>
+				</template>
+
+				<template x-if="data && fetchStatus === 'success'">
+					<p class="text-center text-xl font-semibold" x-text="'you are in' + ' ' + data.name +
+					 ', and type of this location is'+ ' '+ data.type +' '+ 'in the'+ data.dimension"></p>
+				</template>
+
+				<template x-if="fetchStatus !== 'loading' && fetchStatus !== 'success'">
+					<p class="text-center text-2xl">
+						push the button to travel between universes
+					</p>
 				</template>
 
 			</div>
 
-			<div class="flex justify-center">
-				<div class="flex items-center gap-2">
-					<a href="#top" class="btn px-4 py-2 cursor-pointer" @click="previousPage()">prev</a>
-					<a href="#top" class="btn px-4 py-2 cursor-pointer" @click="nextPage()">next</a>
-				</div>
-			</div>
+			<button class="btn w-10/12 md:w-4/12" id="travel-btn" @click="newLocation()">
+				lets travel
+			</button>
+
 		</main>
 
 		<footer class="text-center py-6 space-y-6 bg-slate-800 rounded-t-lg px-2">
