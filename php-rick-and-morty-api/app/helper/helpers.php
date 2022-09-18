@@ -48,7 +48,8 @@ function view(string $path, array $data = [])
 
 function asset(string $path)
 {
-	if (!checkAssetExists(BASE_URL . '/' . $path))
+	$path = BASE_URL . '/' . $path;
+	if (!checkAssetExists($path))
 		throw new FileDoesNotExistException();
 	return $path;
 }
@@ -63,9 +64,10 @@ function checkAssetExists(string $path): bool
 function route(string $routeName, array $parameter = [])
 {
 	$route = getRoute($routeName);
-	if (!empty($parameter['id']))
+	if (!empty($parameter['id'])) {
 		return BASE_URL . str_replace(':id', $parameter['id'], $route);
-	return BASE_URL . $route ?? '';
+	}
+	return BASE_URL . $route;
 }
 
 function getRoute(string $routeName)
@@ -73,9 +75,11 @@ function getRoute(string $routeName)
 	global $routes;
 	$allRoute = $routes->getRoutes();
 	foreach ($allRoute as $key => $value) {
-		if ($value['name'] === $routeName)
-			return $value['route'];
+		if ($value['name'] === $routeName) {
+			$route = $value['route'];
+		}
 	}
+	return $route;
 }
 
 function displayError(string $msg)

@@ -1,24 +1,4 @@
 RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
-
-# Send Requests To Front Controller...
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule ^ index.php [L]
-
-# Redirect Trailing Slashes If Not A Folder...
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{REQUEST_URI} (.+)/$
-#RewriteRule ^ %1 [L,R=301]
-
-# Prevent viewing of .htaccess file
-<Files .htaccess>
-	order allow,deny
-	deny from all
-</Files>
-
-# Prevent directory listings
-Options -indexes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]

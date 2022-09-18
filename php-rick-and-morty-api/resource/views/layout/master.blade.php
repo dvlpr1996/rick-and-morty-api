@@ -14,7 +14,7 @@
 		<meta name="description" content="Rick and Morty wiki | dvlpr1996">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="keywords" content="Rick and Morty wiki, tailwindCss, dvlpr1996, php8">
-		<link rel="icon" sizes="64X64" href="{{ asset('favicon.ico') }}">
+		{{-- <link rel="icon" sizes="64X64" href="{{ asset('favicon.ico') }}"> --}}
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 		<link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
 		<!-- [if lt IE 9]>
@@ -40,13 +40,13 @@
 
 								<div class="space-x-1 sm:space-x-3">
 										<a href="{{ route('home.index') }}">home</a>
-										<a href="{{ route('episodes.index') }}">Episodes</a>
-										<a href="{{ route('location.index') }}">Locations</a>
+										<a href="#">Episodes</a>
+										<a href="#">Locations</a>
 								</div>
 						</div>
 
-						<a href="{{ route('portal.index') }}" title="travel between different universes" loading="lazy">
-							<img src="{{ asset('img/portal.png') }}" class="portal-img" alt="portal">
+						<a href="#" title="travel between different universes">
+							<img src="{{ asset('img/portal.png') }}" class="portal-img" alt="portal"  loading="lazy">
 						</a>
 				</nav>
 
