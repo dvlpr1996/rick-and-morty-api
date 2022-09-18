@@ -45,7 +45,7 @@
 								</div>
 						</div>
 
-						<a href="#" title="travel between different universes">
+						<a href="{{ route('portal.index') }}" title="travel between different universes">
 							<img src="{{ asset('img/portal.png') }}" class="portal-img" alt="portal"  loading="lazy">
 						</a>
 				</nav>
