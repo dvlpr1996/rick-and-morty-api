@@ -13,5 +13,6 @@ return [
 		'controllers' => 'app\controllers',
 		'middlewares' => 'app\middlewares'
 	],
-	'debug' => Config::get('app.ROUTER_DEBUG')
+	'debug' => Config::get('app.ROUTER_DEBUG'),
+	// 'cache' => realpath(CACHE_PATH . 'route/cache.php')
 ];

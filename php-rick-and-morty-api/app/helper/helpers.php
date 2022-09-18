@@ -73,7 +73,7 @@ function route(string $routeName, array $parameter = [])
 function getRoute(string $routeName)
 {
 	global $routes;
-	$allRoute = $routes->getRoutes();
+	$allRoute = $routes->getAllRoutes();
 	foreach ($allRoute as $key => $value) {
 		if ($value['name'] === $routeName) {
 			$route = $value['route'];
