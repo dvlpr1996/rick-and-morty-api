@@ -4,3 +4,5 @@ vendor/
 DOC.txt
 .env
 docs/
+php-rick-and-morty-api/storage/
+php-rick-and-morty-api/resource/css/input.css
