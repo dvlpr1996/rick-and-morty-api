@@ -40,7 +40,7 @@
 
 								<div class="space-x-1 sm:space-x-3">
 										<a href="{{ route('home.index') }}">home</a>
-										<a href="#">Episodes</a>
+										<a href="{{ route('episodes.index') }}">Episodes</a>
 										<a href="{{ route('locations.index') }}">Locations</a>
 								</div>
 						</div>
