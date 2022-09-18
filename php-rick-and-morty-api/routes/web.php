@@ -3,12 +3,14 @@
 use Buki\Router\Router;
 use app\utilities\Config;
 use app\controllers\HomeController;
+use app\controllers\LocationController;
 use app\controllers\CharacterController;
 
 $routes = new Router(Config::get('router'));
 
 $routes->get('/', [HomeController::class, 'index'], ['name' => 'home.index']);
 $routes->get('/character/:id', [CharacterController::class, 'index'], ['name' => 'character.index']);
+$routes->get('/locations', [LocationController::class, 'index'],['name' => 'locations.index']);
 
 $routes->notFound(function () {
 	// todo :implements this
