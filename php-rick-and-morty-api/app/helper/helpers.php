@@ -6,7 +6,7 @@ use app\exceptions\DataDoesNotExistException;
 use app\exceptions\FileDoesNotExistException;
 
 function checkViewExists(string $path)
-{	
+{
 	if (!checkFileExists(VIEW_PATH . $path))
 		throw new VewDoesNotExistException();
 	return true;
@@ -58,4 +58,29 @@ function checkAssetExists(string $path): bool
 	if (!checkFileExists($path) && !isValidAssetUrl($path))
 		return false;
 	return true;
+}
+
+function route(string $routeName, array $parameter = [])
+{
+	$route = getRoute($routeName);
+	if (!empty($parameter['id']))
+		return BASE_URL . str_replace(':id', $parameter['id'], $route);
+	return BASE_URL . $route ?? '';
+}
+
+function getRoute(string $routeName)
+{
+	global $routes;
+	$allRoute = $routes->getRoutes();
+	foreach ($allRoute as $key => $value) {
+		if ($value['name'] === $routeName)
+			return $value['route'];
+	}
+}
+
+function displayError(string $msg)
+{
+	echo "<pre style='color: #9c4100; background: #fff; z-index: 999; position: relative; padding: 10px; margin: 10px; border-radius: 5px; border-left: 3px solid #c56705;'>";
+	echo $msg;
+	echo "</pre>";
 }
