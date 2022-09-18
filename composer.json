@@ -1,0 +1,19 @@
+{
+	"name": "dvlpr1996/php-rick-and-morty-api",
+	"description": "rest api rick and morty wiki Separately Implemented with alpine.js and pure php",
+	"type": "project",
+	"autoload": {
+		"files": [
+			"php-rick-and-morty-api/app/helper/helpers.php"
+		],
+		"psr-4": {
+			"app\\": "php-rick-and-morty-api/app/"
+		}
+	},
+	"require": {
+		"vlucas/phpdotenv": "^5.4"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^6.0"
+	}
+}
