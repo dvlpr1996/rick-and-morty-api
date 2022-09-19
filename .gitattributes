@@ -2,7 +2,7 @@
 
 *.blade.php diff=blade
 *.css diff=css
-*.html diff=html
+*.html diff=php
 *.md diff=markdown
 *.js diff=js
 *.php diff=php

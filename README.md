@@ -1,13 +1,8 @@
 # Rick And Morty Api
 
 ## Description :
-<br>
-
 **Rest Api Rick And Morty Wiki Separately Implemented With Alpine Js And Pure Php**
-
 ## Demo Link:
-<br>
-
 ![demoLink](https://img.shields.io/badge/-PHP-777BB4?style=for-the-badge&logo=php&logoColor=fff)
 
 ## Language And Tools :
