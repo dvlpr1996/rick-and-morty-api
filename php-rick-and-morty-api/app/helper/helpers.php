@@ -82,6 +82,15 @@ function getRoute(string $routeName)
 	return $route;
 }
 
+function page(string $uri = null)
+{
+	if (is_null($uri))
+		return 1;
+
+	$uri = explode('?page=', $uri, 2);
+	return $uri[1];
+}
+
 function displayError(string $msg)
 {
 	echo "<pre style='color: #9c4100; background: #fff; z-index: 999; position: relative; padding: 10px; margin: 10px; border-radius: 5px; border-left: 3px solid #c56705;'>";

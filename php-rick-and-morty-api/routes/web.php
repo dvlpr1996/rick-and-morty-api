@@ -9,7 +9,8 @@ use app\controllers\CharacterController;
 
 $routes = new RouterAdapter();
 
-$routes->get('/', [HomeController::class, 'index'],'home.index');
+$routes->get('/characters', [HomeController::class, 'index'],'home.index');
+$routes->get('/characters/page=:id', [HomeController::class, 'pagination'],'home.pagination');
 $routes->get('/character/:id', [CharacterController::class, 'index'],'character.index');
 $routes->get('/locations', [LocationController::class, 'index'],'locations.index');
 $routes->get('/episodes', [EpisodesController::class, 'index'],'episodes.index');

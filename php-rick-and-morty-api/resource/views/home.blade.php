@@ -14,35 +14,44 @@
 				</div>
 
 				<div class="card-wrapper">
-						<div class="card">
-								<img src="#" alt="#" class="card-img">
-								<div class="card-body">
-										<h2 class="card-title">#</h2>
+						@forelse ($allCharacters->results as $key => $character)
+								<div class="card">
+										<img src="{{ $character->image }}" alt="{{ $character->name }}" class="card-img" loading="lazy">
+										<div class="card-body">
+												<h2 class="card-title truncate" title="{{ $character->name }}">
+													{{ $character->name }}
+												</h2>
 
-										<div class="flex items-center justify-between">
-												<span id="gender-wrapper">
-														<i class="fas mr-1" id="gender-icon"></i>
-														<span id="gender">#</span>
-												</span>
+												<div class="flex items-center justify-between">
+														<span id="gender-wrapper">
+																<i class="fas mr-1" id="gender-icon"></i>
+																<span id="gender">{{ $character->gender }}</span>
+														</span>
 
-												<span id="status-wrapper">
-														<i class="far mr-1" id="status-icon"></i>
-														<span id="status">#</span>
-												</span>
+														<span id="status-wrapper">
+																<i class="far mr-1" id="status-icon"></i>
+																<span id="status">{{ $character->status }}</span>
+														</span>
+												</div>
+												<a href="{{ route('character.index', ['id' => $character->id]) }}" class="btn" id="char-btn">show more
+														<i class="fas fa-angle-double-right align-middle"></i>
+												</a>
+
 										</div>
-										<a href="{{ route('character.index', ['id' => 5]) }}" class="btn" id="char-btn">show more
-												<i class="fas fa-angle-double-right align-middle"></i>
-										</a>
-
 								</div>
-						</div>
-
+						@empty
+								<div class="col-span-12 rounded-lg bg-slate-800 p-7 text-center">
+										<p>sorry. there is no data to display</p>
+								</div>
+						@endforelse
 				</div>
 
 				<div class="flex justify-center">
 						<div class="flex items-center gap-2">
-								<a href="#top" class="btn cursor-pointer px-4 py-2">prev</a>
-								<a href="#top" class="btn cursor-pointer px-4 py-2">next</a>
+								<a href="{{ route('home.pagination', ['id' => page($allCharacters->info->prev)]) }}"
+										class="btn cursor-pointer px-4 py-2">prev</a>
+								<a href="{{ route('home.pagination', ['id' => page($allCharacters->info->next)]) }}"
+										class="btn cursor-pointer px-4 py-2">next</a>
 						</div>
 				</div>
 		</main>

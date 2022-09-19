@@ -23,10 +23,10 @@
 </head>
 
 <body>
-		{{-- <div id="loader" class="loader-container">
+		<div id="loader" class="loader-container">
 				<img src="{{ asset('img/portal.png') }}" alt="loader" class="portal-img h-44 w-44">
 				<p class="text-center text-lg text-black">loading ...</p>
-		</div> --}}
+		</div>
 
 		<div class="mx-auto max-w-7xl">
 				<nav class="flex items-center justify-between py-4">
@@ -77,7 +77,7 @@
 				</footer>
 		</div>
 
-		<script src="{{ asset('js/app.min.js') }}" defer></script>
+		<script src="{{ asset('js/app.min.js') }}"></script>
 		<noscript>your browser does not support the javascript!!!</noscript>
 
 </body>
