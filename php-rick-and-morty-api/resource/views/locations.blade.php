@@ -14,16 +14,16 @@
 								<div class="card gap-5">
 										<h3 class="card-title truncate">{{ $location->name ?? 'not defined' }}</h3>
 										<ul class="space-y-3 capitalize">
-											<li class="truncate">
+												<li class="truncate">
 														<span>location type :</span>
 														<span title="{{ $location->type ?? 'not defined' }}">
-															{{ $location->type ?? 'not defined' }}
+																{{ $location->type ?? 'not defined' }}
 														</span>
 												</li>
 												<li class="truncate">
 														<span>dimension :</span>
 														<span title="{{ $location->dimension ?? 'not defined' }}">
-															{{ $location->dimension ?? 'not defined' }}
+																{{ $location->dimension ?? 'not defined' }}
 														</span>
 												</li>
 												<li>
@@ -35,9 +35,7 @@
 										</ul>
 								</div>
 						@empty
-								<div class="col-span-12 rounded-lg bg-slate-800 p-7 text-center">
-										<p>sorry. there is no data to display</p>
-								</div>
+								@include('components.displayEmptyError')
 						@endforelse
 				</div>
 

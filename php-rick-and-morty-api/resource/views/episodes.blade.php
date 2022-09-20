@@ -31,9 +31,7 @@
 										</ul>
 								</div>
 						@empty
-								<div class="col-span-12 rounded-lg bg-slate-800 p-7 text-center">
-										<p>sorry. there is no data to display</p>
-								</div>
+								@include('components.displayEmptyError')
 						@endforelse
 				</div>
 

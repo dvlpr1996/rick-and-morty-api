@@ -20,8 +20,7 @@
 												loading="lazy">
 
 										<div class="card-body">
-												<h2 class="card-title truncate"
-												 title="{{ $character->name ?? 'not defined' }}">
+												<h2 class="card-title truncate" title="{{ $character->name ?? 'not defined' }}">
 														{{ $character->name ?? 'not defined' }}
 												</h2>
 
@@ -36,17 +35,15 @@
 																<span id="status">{{ $character->status ?? 'not defined' }}</span>
 														</span>
 												</div>
-												<a href="{{ route('character.index', ['id' => $character->id ?? '']) }}" class="btn"
-														id="char-btn">show more
+												<a href="{{ route('character.index', ['id' => $character->id ?? '']) }}" class="btn" id="char-btn">show
+														more
 														<i class="fas fa-angle-double-right align-middle"></i>
 												</a>
 
 										</div>
 								</div>
 						@empty
-								<div class="col-span-12 rounded-lg bg-slate-800 p-7 text-center">
-										<p>sorry. there is no data to display</p>
-								</div>
+								@include('components.displayEmptyError')
 						@endforelse
 				</div>
 
