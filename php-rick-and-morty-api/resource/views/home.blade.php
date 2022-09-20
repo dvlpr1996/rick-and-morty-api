@@ -3,11 +3,7 @@
 @section('title', 'home')
 
 @section('content')
-		<header>
-
-		</header>
-
-		<main class="my-16 space-y-16">
+		<main class="my-8 space-y-16">
 				<div class="flex items-center justify-center gap-2 sm:justify-start">
 						<img src="{{ asset('img/rick.png') }}" alt="rick-logo" class="h-16 w-16">
 						<h1 id="top">Rick and Morty<sup class="hidden text-2xl sm:inline-flex">wiki</sup></h1>
@@ -16,8 +12,7 @@
 				<div class="card-wrapper">
 						@forelse ($allCharacters->results as $key => $character)
 								<div class="card">
-										<img src="{{ $character->image ?? '...' }}" alt="{{ $character->name ?? 'not defined' }}" class="card-img"
-												loading="lazy">
+										<img src="{{ $character->image ?? '...' }}" alt="{{ $character->name ?? 'not defined' }}" class="card-img">
 
 										<div class="card-body">
 												<h2 class="card-title truncate" title="{{ $character->name ?? 'not defined' }}">

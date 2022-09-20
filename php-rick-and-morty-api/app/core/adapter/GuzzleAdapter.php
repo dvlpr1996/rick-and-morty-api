@@ -16,7 +16,7 @@ class GuzzleAdapter
 
 	public static function response(string $uri, array $query = [])
 	{
-		$options = ['query' => $query];
+		$options = ['query' => $query, 'SYNCHRONOUS' => true];
 		$response = self::load()->request('GET', $uri, $options);
 		if (self::isSuccess($response)) {
 			$response->getHeaderLine('content-type')[0];

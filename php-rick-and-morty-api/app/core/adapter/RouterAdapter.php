@@ -26,6 +26,7 @@ class RouterAdapter
 	public function runRouter()
 	{
 		$this->dispatch404();
+		$this->displayError();
 		return $this->router->run();
 	}
 
@@ -35,6 +36,13 @@ class RouterAdapter
 			header("HTTP/1.0 404 Not Found");
 			view('errors.404');
 			die();
+		});
+	}
+
+	public function displayError()
+	{
+		return $this->router->error(function () {
+			view('errors.error');
 		});
 	}
 }

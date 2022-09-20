@@ -3,7 +3,7 @@
 ## Description :
 **Rest Api Rick And Morty Wiki Separately Implemented With Alpine Js And Pure Php**
 ## Demo Link:
-![demoLink](https://img.shields.io/badge/-PHP-777BB4?style=for-the-badge&logo=php&logoColor=fff)
+![rick-and-morty-api demo Link](https://rick-and-morty-api-woad.vercel.app/index.html)
 
 ## Language And Tools :
 <br>
