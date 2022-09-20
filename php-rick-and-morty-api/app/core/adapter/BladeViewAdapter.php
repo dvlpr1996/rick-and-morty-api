@@ -9,17 +9,24 @@ class BladeViewAdapter
 {
 	private const view_extension = '.blade.php';
 
-	public function load()
+	private function load()
 	{
 		return new Blade(VIEW_PATH, CACHE_PATH);
 	}
 
-	public function renderView(string $viewPath, array $viewData = [])
+	private function renderView(string $viewPath, array $viewData = [])
 	{
-		if (!checkViewExists($viewPath . self::view_extension))
+		if (!checkFileExists($this->generateViewPath($viewPath)))
 			throw new VewDoesNotExistException();
 
 		echo $this->load()->render($viewPath,  $viewData);
+	}
+
+	private function generateViewPath(string $path): string
+	{
+		$path = explode('.', $path);
+		$path = str_replace(".", "/", implode(".", $path));
+		return VIEW_PATH . $path . self::view_extension;
 	}
 
 	public function display(string $viewPath, array $viewData = [])

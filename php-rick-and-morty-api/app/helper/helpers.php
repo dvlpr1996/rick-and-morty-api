@@ -1,16 +1,8 @@
 <?php
 
 use app\core\Adapter\BladeViewAdapter;
-use app\exceptions\VewDoesNotExistException;
 use app\exceptions\DataDoesNotExistException;
 use app\exceptions\FileDoesNotExistException;
-
-function checkViewExists(string $path)
-{
-	if (!checkFileExists(VIEW_PATH . $path))
-		throw new VewDoesNotExistException();
-	return true;
-}
 
 function checkFileExists(string $path): bool
 {
